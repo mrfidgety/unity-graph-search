@@ -685,5 +685,5 @@ MonoBehaviour:
   mazeNodePrefab: {fileID: 114697152645507024, guid: 181ac012edc339449a68fe610a58261b,
     type: 2}
   worldCamera: {fileID: 1933039776}
-  rows: 40
+  rows: 30
   columns: 14

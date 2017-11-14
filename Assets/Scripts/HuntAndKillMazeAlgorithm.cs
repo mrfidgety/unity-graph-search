@@ -31,26 +31,12 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 	}
 
 	private void Hunt() {
+		// Assume course is complete until we find otherwise
 		courseComplete = true;
 
-		MazeNode[] tempArray = new MazeNode[mazeNodes.GetLength(0) * mazeNodes.GetLength(1)];
+		MazeNode[] tempArray = FlattenAndShuffleNodes();
 
-		// Flatten mazeNodes into tempArray
-		for(int row = 0; row < mazeNodes.GetLength(0); row++) {
-			for(int col = 0; col < mazeNodes.GetLength(1); col++) {
-				tempArray[(row * mazeNodes.GetLength(1)) + col] = mazeNodes[row, col];
-			}
-		}
-
-		// Shuffle tempArray
-		for(int i = 0; i < tempArray.Length; i++) {
-			MazeNode tmp = tempArray[i];
-			int random = Random.Range(0, tempArray.Length);
-			tempArray[i] = tempArray[random];
-			tempArray[random] = tmp;
-		}
-
-		// Hunt for unvisited adjacent node
+		// Hunt for random unvisited node with a visited adjacent node
 		foreach(MazeNode node in tempArray) {
 			if(!node.visited && node.VisitedAdjacentNodes().Count > 0) {
 				courseComplete = false;
@@ -87,5 +73,29 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 		// Set new current node
 		currentNode = nextNode;
+	}
+
+	private MazeNode[] FlattenAndShuffleNodes() {
+		int rows = mazeNodes.GetLength(0);
+		int cols = mazeNodes.GetLength(1);
+
+		MazeNode[] result = new MazeNode[rows * cols];
+
+		// Flatten mazeNodes into new one dimensional array
+		for(int row = 0; row < rows; row++) {
+			for(int col = 0; col < cols; col++) {
+				result[(row * cols) + col] = mazeNodes[row, col];
+			}
+		}
+
+		// Shuffle result
+		for(int i = 0; i < result.Length; i++) {
+			MazeNode tmp = result[i];
+			int random = Random.Range(0, result.Length);
+			result[i] = result[random];
+			result[random] = tmp;
+		}
+
+		return result;
 	}
 }
