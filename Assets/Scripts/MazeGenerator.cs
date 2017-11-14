@@ -14,9 +14,8 @@ public class MazeGenerator : MonoBehaviour {
 		MoveWorldCamera ();
 		InitializeMazeNodes(rows, columns);
 
-
-		//MazeAlgorithm algorithm = new HuntAndKillMazeAlgorithm (mazeNodes);
-		//algorithm.CreateMaze ();
+		MazeAlgorithm algorithm = new HuntAndKillMazeAlgorithm (mazeNodes);
+		algorithm.CreateMaze ();
 	}
 
 	private void MoveWorldCamera() {
@@ -24,7 +23,7 @@ public class MazeGenerator : MonoBehaviour {
 		worldCamera.transform.position = new Vector3 (rows * 10 / 2, 100, columns * 10 / 2);
 
 		// Adjust camera view size
-		worldCamera.orthographicSize = (rows + columns) / 2 * 8;
+		worldCamera.orthographicSize = (rows + columns) / 2 * 5;
 	}
 
 	private void InitializeMazeNodes(int mazeRows, int mazeColumns) {
@@ -63,28 +62,28 @@ public class MazeGenerator : MonoBehaviour {
 
 	private void ConnectMazeNodes () {
 		foreach(MazeNode node in mazeNodes) {
-			AddConnectedNodes (node);
+			AddAdjacentNodes (node);
 		}
 	}
 
-	private void AddConnectedNodes(MazeNode node) {
-		node.connectedNodes = new List<MazeNode>();
+	private void AddAdjacentNodes(MazeNode node) {
+		node.adjacentNodes = new List<MazeNode>();
 
 		int x_coord = node.coordinates.x;
 		int z_coord = node.coordinates.z;
 
 		if(x_coord > 0) {
-			node.connectedNodes.Add(
+			node.adjacentNodes.Add(
 				mazeNodes[x_coord - 1, z_coord]);
 		}
 		if(x_coord < mazeNodes.GetLength(0) - 1) {
-			node.connectedNodes.Add(mazeNodes[x_coord + 1, z_coord]);
+			node.adjacentNodes.Add(mazeNodes[x_coord + 1, z_coord]);
 		}
 		if(z_coord > 0) {
-			node.connectedNodes.Add(mazeNodes[x_coord, z_coord - 1]);
+			node.adjacentNodes.Add(mazeNodes[x_coord, z_coord - 1]);
 		}
 		if(z_coord < mazeNodes.GetLength(1) - 1) {
-			node.connectedNodes.Add(mazeNodes[x_coord, z_coord + 1]);
+			node.adjacentNodes.Add(mazeNodes[x_coord, z_coord + 1]);
 		}
 	}
 

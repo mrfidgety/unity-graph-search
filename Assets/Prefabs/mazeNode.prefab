@@ -176,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1516050655407502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 37.172554, y: -0.09999983, z: -2.1746285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4854085615881482}
@@ -480,6 +480,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   northWall: {fileID: 1072189733391644}
   southWall: {fileID: 1987164078927506}
-  eastWall: {fileID: 1987164078927506}
-  westWall: {fileID: 1400783474510358}
+  eastWall: {fileID: 1400783474510358}
+  westWall: {fileID: 1729192698587606}
   floor: {fileID: 1361107978096794}
+  visited: 0
+  coordinates:
+    x: 0
+    z: 0
+  connectedNodes: []

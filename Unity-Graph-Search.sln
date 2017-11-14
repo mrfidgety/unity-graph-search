@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graph-Search", "Assembly-CSharp.csproj", "{D359708E-365D-DC0E-3BCD-AD0AAA938FBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graph-Search", "Assembly-CSharp-firstpass.csproj", "{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity-Graph-Search", "Assembly-CSharp-Editor-firstpass.csproj", "{4A4B9B99-BCDB-1C83-4B01-A700134DBC0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{D359708E-365D-DC0E-3BCD-AD0AAA938FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D359708E-365D-DC0E-3BCD-AD0AAA938FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D359708E-365D-DC0E-3BCD-AD0AAA938FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4B9B99-BCDB-1C83-4B01-A700134DBC0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4B9B99-BCDB-1C83-4B01-A700134DBC0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4B9B99-BCDB-1C83-4B01-A700134DBC0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4B9B99-BCDB-1C83-4B01-A700134DBC0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
