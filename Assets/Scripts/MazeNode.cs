@@ -10,6 +10,16 @@ public class MazeNode : MonoBehaviour {
 	public List<MazeNode> adjacentNodes;
 	public List<MazeNode> connectedNodes;
 
+	public void Visit() {
+		visited = true;
+		floor.GetComponent<Renderer>().material.color = new Color(1.0F, 0.1F, 0.4F, 1.0F);
+	}
+
+	public void Unvisit() {
+		visited = false;
+		floor.GetComponent<Renderer>().material.color = new Color(0F, 0F, 0F, 0F);
+	}
+
 	public List<MazeNode> UnvisitedAdjacentNodes () {
 		List<MazeNode> unvisited = new List<MazeNode>();
 
@@ -40,6 +50,7 @@ public class MazeNode : MonoBehaviour {
 		int direction_x = node.coordinates.x - coordinates.x;
 		int direction_z = node.coordinates.z - coordinates.z;
 
+		// East/West
 		if (direction_x == 1) {
 			Destroy(eastWall);
 			Destroy(node.westWall);
@@ -48,6 +59,7 @@ public class MazeNode : MonoBehaviour {
 			Destroy(node.eastWall);
 		}
 
+		// North/South
 		if (direction_z == 1) {
 			Destroy(northWall);
 			Destroy(node.southWall);

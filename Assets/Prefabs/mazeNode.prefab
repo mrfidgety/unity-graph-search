@@ -214,7 +214,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 19e9c80710bf5614f805aa6124ca1485, type: 2}
+  - {fileID: 2100000, guid: ac92803fe23b44e5e9ac4671747461fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -487,4 +487,5 @@ MonoBehaviour:
   coordinates:
     x: 0
     z: 0
+  adjacentNodes: []
   connectedNodes: []

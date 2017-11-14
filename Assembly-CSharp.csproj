@@ -51,16 +51,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\BreadthFirstMazeSolver.cs" />
+     <Compile Include="Assets\Scripts\DepthFirstMazeSolver.cs" />
      <Compile Include="Assets\Scripts\HuntAndKillMazeAlgorithm.cs" />
      <Compile Include="Assets\Scripts\IntVector2.cs" />
      <Compile Include="Assets\Scripts\MazeAlgorithm.cs" />
      <Compile Include="Assets\Scripts\MazeDirection.cs" />
      <Compile Include="Assets\Scripts\MazeGenerator.cs" />
      <Compile Include="Assets\Scripts\MazeNode.cs" />
-     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
-     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
-     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+     <Compile Include="Assets\Scripts\MazeSolver.cs" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>
@@ -94,10 +93,6 @@
  <Reference Include="UnityEngine.Purchasing">
  <HintPath>/Users/tristanhart/Library/Unity/cache/packages/packages.unity.com/com.unity.purchasing@1.0.1/UnityEngine.Purchasing.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{7DDC5E2B-D18D-C7D8-CF5F-E51F54132C5D}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

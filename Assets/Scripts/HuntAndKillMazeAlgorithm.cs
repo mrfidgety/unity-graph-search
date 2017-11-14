@@ -22,6 +22,9 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 			Kill ();
 			Hunt ();
 		}
+
+		// Set all nodes to not visited
+		UnvisitAllNodes();
 	}
 
 	private void Kill () {
@@ -44,12 +47,12 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 				// Choose random index
 				int index = Random.Range(0, node.VisitedAdjacentNodes().Count);
 
-				// Destroy wall to the visited node
+				// Move to the random unvisited node
 				node.MoveTo(node.VisitedAdjacentNodes()[index]);
 
 				// Set as current node
 				currentNode = node;
-				currentNode.visited = true;
+				currentNode.Visit();
 			}
 		}
 	}
@@ -60,7 +63,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 	private void Move () {
 		// Set current node to unvisited
-		currentNode.visited = true;
+		currentNode.Visit();
 
 		// Choose random index
 		int index = Random.Range(0, currentNode.UnvisitedAdjacentNodes().Count);
@@ -97,5 +100,11 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 		}
 
 		return result;
+	}
+
+	private void UnvisitAllNodes() {
+		foreach(MazeNode node in mazeNodes) {
+			 node.Unvisit();
+		}
 	}
 }
