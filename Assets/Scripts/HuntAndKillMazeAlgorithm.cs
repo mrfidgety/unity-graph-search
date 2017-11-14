@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
-	
-	private int currentRow = 0, currentCol = 0;
+
+	private MazeNode currentNode;
 	private bool courseComplete = false;
 
 	public HuntAndKillMazeAlgorithm(MazeNode[,] mazeNodes) : base(mazeNodes) {}
@@ -14,6 +14,9 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 	}
 
 	private void HuntAndKill() {
+		// Set starting maze node
+		currentNode = mazeNodes[0,0];
+
 		while (!courseComplete) {
 			Kill ();
 			Hunt ();
@@ -21,8 +24,8 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 	}
 
 	private void Kill () {
-		while (CanMove (currentRow, currentCol)) {
-
+		while (CanMove()) {
+			
 		}
 	}
 
@@ -30,12 +33,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 	}
 
-	private bool CanMove(int row, int col) {
-		return true;
-		//NeighbourNodes (row, col);
+	private bool CanMove () {
+		return currentNode.UnvisitedNeighbourNodes();
 	}
-
-	/**private GameObject[] NeighbourNodes (int row, int col) {
-		return GameObject[] neighbours =-;
-	}**/
 }
