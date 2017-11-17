@@ -14,21 +14,23 @@ public class BreadthFirstMazeSolver : MazeSolver {
 
     WaitForSeconds delay = new WaitForSeconds(0.025F);
 
-    while(queue.Count > 0 && !solved) {
+    while(!solved && queue.Count > 0) {
       MazeNode currentNode = queue.Dequeue();
 
-      if(!currentNode.visited) {
-        currentNode.Visit();
+      currentNode.Visit();
+      yield return delay;
 
-        if(currentNode == endNode) {
-          solved = true;
-        } else {
-          foreach(MazeNode node in currentNode.connectedNodes) {
-            queue.Enqueue(node);
-          }
+      if(currentNode == endNode) {
+        solved = true;
+        ReconstructPath(currentNode);
+        continue;
+      }
+      
+      foreach(MazeNode neighbor in currentNode.connectedNodes) {
+        if(!neighbor.visited) {
+          parentSet[neighbor] = currentNode;
+          queue.Enqueue(neighbor);
         }
-
-        yield return delay;
       }
     }
   }

@@ -38,11 +38,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4489191689694922}
   - component: {fileID: 33176894608520342}
-  - component: {fileID: 64653161006661584}
   - component: {fileID: 23122469008826112}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,6 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653158906699948}
   - component: {fileID: 114697152645507024}
+  - component: {fileID: 65259780100509082}
   m_Layer: 0
   m_Name: mazeNode
   m_TagString: Untagged
@@ -405,20 +405,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987164078927506}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64653161006661584
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1361107978096794}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65019488295846892
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -443,6 +429,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65259780100509082
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516050655407502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 1, z: 8}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!65 &65526732330377684
 BoxCollider:
   m_ObjectHideFlags: 1

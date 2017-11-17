@@ -20,6 +20,10 @@ public class MazeNode : MonoBehaviour {
 		floor.GetComponent<Renderer>().material.color = new Color(0F, 0F, 0F, 0F);
 	}
 
+	public void SetPath() {
+		floor.GetComponent<Renderer>().material.color = new Color(0.3F, 0.5F, 1.0F, 1.0F);
+	}
+
 	public List<MazeNode> UnvisitedAdjacentNodes () {
 		List<MazeNode> unvisited = new List<MazeNode>();
 
@@ -67,5 +71,10 @@ public class MazeNode : MonoBehaviour {
 			Destroy(southWall);
 			Destroy(node.northWall);
 		}
+	}
+
+	void OnTriggerEnter (Collider other) {
+			Visit();
+			Debug.Log("Trigger");
 	}
 }

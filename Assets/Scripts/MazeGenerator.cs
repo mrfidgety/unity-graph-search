@@ -6,16 +6,74 @@ public class MazeGenerator : MonoBehaviour {
 
 	public MazeNode mazeNodePrefab;
 	public Camera worldCamera;
-	public MazeSolver mazeSolver;
+	public Camera playerCamera;
+	public MazeSolver solver;
 	public MazeNode[,] mazeNodes;
-	public MazeNode startNode, endNode;
+	public GameObject player;
+	public GameObject beaconPrefab;
+	private GameObject theBeacon;
+	private MazeNode startNode, endNode;
 	public int rows = 10, columns = 10;
 
 	void Start () {
+		playerCamera.enabled = false;
+		worldCamera.enabled = true;
+
 		MoveWorldCamera ();
 		InitializeMazeNodes(rows, columns);
 		GenerateMaze();
+		CreateBeacon();
+		ShowBeacon();
+	}
+
+	public void DepthFirstSearch() {
+		solver = new DepthFirstMazeSolver (startNode, endNode);
 		SolveMaze();
+	}
+
+	public void BreadthFirstSearch() {
+		solver = new BreadthFirstMazeSolver (startNode, endNode);
+		SolveMaze();
+	}
+
+	public void AStarSearch() {
+		solver = new AStarMazeSolver (startNode, endNode);
+		SolveMaze();
+	}
+
+	public void Reset() {
+		StopAllCoroutines();
+		ResetNodes();
+		ResetPlayer();
+	}
+
+	public void RegenerateMaze() {
+		StopAllCoroutines();
+
+		foreach(MazeNode node in mazeNodes) {
+			Destroy(node.gameObject);
+		}
+
+		InitializeMazeNodes(rows, columns);
+		GenerateMaze();
+	}
+
+	public void SwitchCamera() {
+		if(worldCamera.enabled) {
+			worldCamera.enabled = false;
+			playerCamera.enabled = true;
+		} else {
+			worldCamera.enabled = true;
+			playerCamera.enabled = false;
+		}
+	}
+
+	public void ShowBeacon() {
+		if(theBeacon.GetComponent<Renderer>().enabled) {
+			theBeacon.GetComponent<Renderer>().enabled = false;
+		} else {
+			theBeacon.GetComponent<Renderer>().enabled = true;
+		}
 	}
 
 	private void MoveWorldCamera() {
@@ -46,18 +104,15 @@ public class MazeGenerator : MonoBehaviour {
 	private void GenerateMaze() {
 		// Set maze generation algorithm
 		MazeAlgorithm algorithm = new HuntAndKillMazeAlgorithm (mazeNodes);
-
 		algorithm.CreateMaze ();
-
-		// Set start and end nodes
-		SetStartAndEndNodes();
+		ResetNodes();
+		ResetPlayer();
 	}
 
 	private void SolveMaze() {
-		// Set maze solving algorithm
-		//MazeSolver solver = new BreadthFirstMazeSolver (startNode, endNode);
-		MazeSolver solver = new DepthFirstMazeSolver (startNode, endNode);
+		StopAllCoroutines();
 
+		ResetNodes();
 
 		StartCoroutine(solver.SolveMaze ());
 	}
@@ -108,6 +163,25 @@ public class MazeGenerator : MonoBehaviour {
 		}
 	}
 
+	private Vector3 CoordinatesLocation (IntVector2 coordinates) {
+		return new Vector3 (coordinates.x * 10, 0, coordinates.z * 10);
+	}
+
+	private void ResetNodes() {
+		UnvisitAllNodes();
+		SetStartAndEndNodes();
+	}
+
+	private void ResetPlayer() {
+		player.transform.position = new Vector3(0, 4, 0);
+	}
+
+	private void UnvisitAllNodes() {
+		foreach(MazeNode node in mazeNodes) {
+			 node.Unvisit();
+		}
+	}
+
 	private void SetStartAndEndNodes() {
 		SetStartNode(mazeNodes[0,0]);
 		SetEndNode(mazeNodes[rows - 1, columns - 1]);
@@ -123,7 +197,12 @@ public class MazeGenerator : MonoBehaviour {
 		endNode.floor.GetComponent<Renderer>().material.color = new Color(0.3F, 0.5F, 1.0F, 1.0F);
 	}
 
-	private Vector3 CoordinatesLocation (IntVector2 coordinates) {
-		return new Vector3 (coordinates.x * 10, 0, coordinates.z * 10);
+	private void CreateBeacon() {
+		theBeacon = Instantiate (
+			beaconPrefab,
+			CoordinatesLocation(endNode.coordinates),
+			Quaternion.Euler(-90, 0, 0),
+			this.transform
+		);
 	}
 }

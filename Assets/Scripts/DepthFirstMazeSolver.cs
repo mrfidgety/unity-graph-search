@@ -14,21 +14,23 @@ public class DepthFirstMazeSolver : MazeSolver {
 
     WaitForSeconds delay = new WaitForSeconds(0.025F);
 
-    while(stack.Count > 0 && !solved) {
+    while(!solved && stack.Count > 0) {
       MazeNode currentNode = stack.Pop();
 
-      if(!currentNode.visited) {
-        currentNode.Visit();
+      currentNode.Visit();
+      yield return delay;
 
-        if(currentNode == endNode) {
-          solved = true;
-        } else {
-          foreach(MazeNode node in currentNode.connectedNodes) {
-            stack.Push(node);
-          }
+      if(currentNode == endNode) {
+        solved = true;
+        ReconstructPath(currentNode);
+        continue;
+      }
+      
+      foreach(MazeNode neighbor in currentNode.connectedNodes) {
+        if(!neighbor.visited) {
+          parentSet[neighbor] = currentNode;
+          stack.Push(neighbor);
         }
-
-        yield return delay;
       }
     }
   }

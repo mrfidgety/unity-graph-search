@@ -22,9 +22,6 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 			Kill ();
 			Hunt ();
 		}
-
-		// Set all nodes to not visited
-		UnvisitAllNodes();
 	}
 
 	private void Kill () {
@@ -100,11 +97,5 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 		}
 
 		return result;
-	}
-
-	private void UnvisitAllNodes() {
-		foreach(MazeNode node in mazeNodes) {
-			 node.Unvisit();
-		}
 	}
 }
